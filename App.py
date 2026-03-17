@@ -21,5 +21,13 @@ CREATE TABLE [dbo].[stocks] (
 );
 
 """
-
+# 1. 登入 azure sql server 成功後取得一個 Connection物件
 connect = pymssql.connect(server,user,password,database)
+print("db登入成功")
+
+# 2. 透過該物件(Connection) 產生一個 Cursor物件負責執行 SQL 語法
+cursor = connect.cursor()
+print("cursor 取得成功")
+
+# 3. 透過 cursor 將 sql 送給 azure sql server 執行
+cursor.execute("select * from stocks")
